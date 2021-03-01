@@ -1,0 +1,10 @@
+## find all the information of the employee with the third lowest entry time
+
+SELECT * 
+FROM employees
+WHERE hire_date = (
+    SELECT DISTINCT hire_date     --employed at the same time
+    FROM employees
+    ORDER BY hire_date DESC       -- 倒序
+    LIMIT 1 OFFSET 2              -- 去掉排名倒数第一第二的时间，取倒数第三
+);    
